@@ -16,4 +16,8 @@ async def get_help(bot: Bot, event: Event , state: T_State):
         await help.finish("还没有开机哦~请先开机！")
 
 async def get_menu(help: str) -> str:
-    return f"这里是菜单！"
+    return f"操作方式：\n\
+    ①输入“七海”后面加想要实现的事件，如：\n\
+    七海，讲个笑话\n\
+    ②直接@本QQ，后面加想要实现的事件，如：\n\
+    @七海千秋，讲个笑话"

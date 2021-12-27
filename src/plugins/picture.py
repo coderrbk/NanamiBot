@@ -9,7 +9,7 @@ from nonebot.adapters.cqhttp.message import Message
 NUMBER_OF_PICTURES = 10
 # 图片总数
 
-meitu = on_command("七海，来张美图", rule=to_me(), priority=5)
+meitu = on_command("来张美图", rule=to_me(), priority=5)
 
 @meitu.handle()
 async def text2(bot: Bot, event: Event , state: T_State):
