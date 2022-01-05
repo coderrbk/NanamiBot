@@ -9,15 +9,13 @@ help = on_command("菜单", rule=to_me(), priority=5)
 
 @help.handle()
 async def get_help(bot: Bot, event: Event , state: T_State):
-    if power[0] == 1:
-        menu = await get_menu(help)
-        await help.finish(menu)
-    else:
-        await help.finish("还没有开机哦~请先开机！")
+    menu = await get_menu(help)
+    await help.finish(menu)
 
 async def get_menu(help: str) -> str:
     return f"操作方式：\n\
     ①输入“七海”后面加想要实现的事件，如：\n\
     七海，讲个笑话\n\
     ②直接@本QQ，后面加想要实现的事件，如：\n\
-    @七海千秋，讲个笑话"
+    @七海千秋，讲个笑话\n\
+    如果使用某功能时提示\"还没有开机哦~请先开机！\"，请@管理开机"
