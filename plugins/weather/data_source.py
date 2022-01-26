@@ -12,6 +12,7 @@ async def get_weather(city: str):
         temperature = tianqi['result']['realtime']['temperature']
         humidity = tianqi['result']['realtime']['humidity']
         info = tianqi['result']['realtime']['info']
+        # wid = tianqi['result']['realtime']['wid']
         direct = tianqi['result']['realtime']['direct']
         power = tianqi['result']['realtime']['power']
         aqi = tianqi['result']['realtime']['aqi']
