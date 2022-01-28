@@ -34,7 +34,7 @@ async def linktomysql():
         nonebot.logger.opt().success(f"数据库连接完成")
     except Exception as e:
         nonebot.logger.opt(colors=True).critical(f"<r>数据库连接失败</r>, error: {repr(e)}")
-        # sys.exit(f"数据库连接失败, {e}")
+        sys.exit(f"数据库连接失败, {e}")
 
 @driver.on_shutdown
 async def linkclose():

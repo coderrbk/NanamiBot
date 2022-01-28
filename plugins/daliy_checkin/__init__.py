@@ -26,7 +26,6 @@ async def hello(bot: Bot, event: Event, state: T_State):
         conn.commit() 
         desc = cursor.description
         data_dict = [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchall()]
-        print(data_dict)
         for d in data_dict:
             if str(d['qqnum']) == event.get_user_id():
                 dt2 = d['date']
