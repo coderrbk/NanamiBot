@@ -3,7 +3,7 @@ import httpx
 async def get_star_sign(star_sign: str):
     #   这里使用的是聚合数据的api接口 星座运势 （免费）
     #   还请使用这个插件的人自己去申请一个key
-    key = "ee2dd47846c99f8dda015baaf5c567bb"
+    key = "value"
     query = httpx.get("http://web.juhe.cn/constellation/getAll?consName={}&type=today&key={}".format(star_sign,key))
     #   这里的type参数中，聚合API提供了today,tomorrow,week,month,year ，我只用了today
     xingzuo = query.json()
