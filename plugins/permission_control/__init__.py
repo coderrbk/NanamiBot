@@ -8,6 +8,9 @@ from nonebot.adapters import Bot, Event
 from nonebot.adapters.cqhttp import *
 from nonebot.permission import SUPERUSER
 
+GROUP_ID = 123456789
+# 你所想要实现的grout_id
+
 shut_up = on_command("禁言我", rule=to_me(), priority=5)
 set_admin = on_command("给我管理员", rule=to_me(), priority=5)
 unset_admin =on_command("取消管理员", permission=SUPERUSER, rule=to_me(), priority=5)
@@ -16,17 +19,19 @@ unset_admin =on_command("取消管理员", permission=SUPERUSER, rule=to_me(), p
 async def shut_somebody_up(bot: Bot, event: MessageEvent, state: T_State):
     if await GROUP_ADMIN(bot, event):
         await shut_up.finish("呜……真的要禁言你吗？你可是管理员哎！")
-    await bot.set_group_ban(group_id=718762916, user_id=event.get_user_id(), duration=300)
+    await bot.set_group_ban(group_id=GROUP_ID, user_id=event.get_user_id(), duration=300)
     await shut_up.finish("已经把{}禁言了啾".format(event.sender.card))
 
 @set_admin.handle()
 async def setadmin(bot: Bot, event: MessageEvent, state: T_State):
     if event.get_user_id() not in bot.config.superusers:
         await set_admin.finish("没有我哥哥的命令我是不会把管理员的权限给你的！")
-    await bot.set_group_admin(group_id=718762916, user_id=event.get_user_id(), enable=True)
+    if await GROUP_ADMIN(bot, event):
+        await set_admin.finish("你已经是管理员了！真是的！（气鼓鼓）")
+    await bot.set_group_admin(group_id=GROUP_ID, user_id=event.get_user_id(), enable=True)
     await set_admin.finish("{}，给你管理员权限了哦".format(event.sender.card))
 
 @unset_admin.handle()
 async def unsetadmin(bot: Bot, event: MessageEvent, state: T_State):
-    await bot.set_group_admin(group_id=718762916, user_id=event.get_user_id(), enable=False)
+    await bot.set_group_admin(group_id=GROUP_ID, user_id=event.get_user_id(), enable=False)
     await unset_admin.finish("现在 {} 已经不是管理员了啾".format(event.sender.card))
