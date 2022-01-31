@@ -8,7 +8,7 @@ from nonebot.adapters import Bot, Event
 from nonebot import require
 
 scheduler = require("nonebot_plugin_apscheduler").scheduler
-@scheduler.scheduled_job("cron", hour="*", minute=0)
+@scheduler.scheduled_job("cron", hour="*", minute="*", second="*")
 async def run_every_hour():
     driver = get_driver()
     BOT_ID = str(driver.config.bot_id)
